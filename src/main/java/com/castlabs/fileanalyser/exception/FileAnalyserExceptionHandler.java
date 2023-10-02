@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
+import java.net.UnknownHostException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -30,5 +31,10 @@ public class FileAnalyserExceptionHandler {
     public ResponseEntity<ApiError> handleWebClientResponseException(WebClientResponseException exception){
         ApiError error = new ApiError( HttpStatus.valueOf(exception.getStatusCode().value()),exception.getMessage());
         return ResponseEntity.status(HttpStatus.valueOf(exception.getStatusCode().value())).body(error);
+    }
+    @ExceptionHandler(UnknownHostException.class)
+    public ResponseEntity<ApiError> handleUnknownHostException(UnknownHostException exception){
+        ApiError error = new ApiError( HttpStatus.BAD_REQUEST,"invalid domain provided");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 }
