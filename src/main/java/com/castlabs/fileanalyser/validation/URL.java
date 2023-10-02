@@ -7,10 +7,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = {ExtensionValidator.class})
-public @interface MP4 {
-
-    String message() default "invalid format, only MP4 is supported";
+@Constraint(validatedBy = {UrlValidator.class})
+public @interface URL {
+    String message() default "invalid url";
     Class<?>[] groups() default { };
 
     Class<? extends Payload>[] payload() default { };

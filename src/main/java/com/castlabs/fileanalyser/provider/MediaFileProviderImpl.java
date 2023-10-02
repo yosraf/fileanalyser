@@ -18,9 +18,11 @@ public class MediaFileProviderImpl implements MediaFileProvider {
        if (StringUtils.isEmpty(url)){
            throw new IllegalArgumentException("url could not be null or empty");
        }
-        return webClient.get()
-                .uri(url)
-                .retrieve().bodyToMono(byte[].class).block();
+
+           return webClient.get()
+                   .uri(url)
+                   .retrieve()
+                   .bodyToMono(byte[].class).block();
 
     }
 }
