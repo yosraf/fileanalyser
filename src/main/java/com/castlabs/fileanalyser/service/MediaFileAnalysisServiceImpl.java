@@ -1,5 +1,6 @@
 package com.castlabs.fileanalyser.service;
 
+import com.castlabs.fileanalyser.exception.InvalidMP4FileException;
 import com.castlabs.fileanalyser.model.Box;
 import com.castlabs.fileanalyser.model.BoxType;
 import com.castlabs.fileanalyser.model.MediaFileAnalysisResult;
@@ -31,6 +32,9 @@ public class MediaFileAnalysisServiceImpl implements MediaFileAnalysisService {
         }
         byte[] content =mediaFileProvider.fetchFileContent(url);
         int length = content.length;
+        if (length < 8){
+            throw new InvalidMP4FileException("MP4 file length is too short");
+        }
         return new MediaFileAnalysisResult(extractBoxes(content,0,length));
     }
 

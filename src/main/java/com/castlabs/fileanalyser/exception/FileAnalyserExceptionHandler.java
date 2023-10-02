@@ -37,4 +37,9 @@ public class FileAnalyserExceptionHandler {
         ApiError error = new ApiError( HttpStatus.BAD_REQUEST,"invalid domain provided");
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
+    @ExceptionHandler(InvalidMP4FileException.class)
+    public ResponseEntity<ApiError> handleInvalidMP4FileException(InvalidMP4FileException exception){
+        ApiError error = new ApiError( HttpStatus.BAD_REQUEST, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
 }
