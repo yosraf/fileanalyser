@@ -20,7 +20,7 @@ public class MediaFileAnalysisController {
     }
 
     @GetMapping("/mp4-analysis")
-    public ResponseEntity<MediaFileAnalysisResult> analyseMP4(@RequestParam @MP4 String url){
-        return ResponseEntity.ok().build();
+    public ResponseEntity<MediaFileAnalysisResult> analyseMP4(@RequestParam @MP4 String url) {
+        return ResponseEntity.ok(mediaFileAnalysisService.analyseMP4(url));
     }
 }

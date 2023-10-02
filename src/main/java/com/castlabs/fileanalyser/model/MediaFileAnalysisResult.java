@@ -1,4 +1,6 @@
 package com.castlabs.fileanalyser.model;
 
-public record MediaFileAnalysisResult() {
+import java.util.List;
+
+public record MediaFileAnalysisResult(List<Box> boxes) {
 }
